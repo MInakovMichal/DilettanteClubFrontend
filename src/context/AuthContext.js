@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const AuthContext = React.createContext();
 
+export const ROOM_KEY = 'room_id';
 export const TOKEN_KEY = 'token';
 export const USER_KEY = 'user_id';
 export const API_BASE_URL = 'http://192.168.100.91/api/auth';
@@ -12,6 +13,7 @@ export const API_BASE_URL = 'http://192.168.100.91/api/auth';
 export const keys = [TOKEN_KEY, USER_KEY];
 
 const AuthProvider = ({ children }) => {
+  const [room, setRoom] = useState(null);
   const [user, setUser] = useState(null);
   const [userToken, setUserToken] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,13 +38,14 @@ const AuthProvider = ({ children }) => {
         }),
       });
       const data = await response.json();
-
       // check if response was successful
       if (response.ok) {
         // save user data and token to async storage
-        await AsyncStorage.setItem(USER_KEY, JSON.stringify(data.data.id));
         setUser(data.data.id);
+        await AsyncStorage.setItem(USER_KEY, JSON.stringify(data.data.id));
         setUserToken(data.data.token);
+        await AsyncStorage.setItem(TOKEN_KEY, data.data.token);
+        setRoom(data.data.room_id);
         await AsyncStorage.setItem(TOKEN_KEY, data.data.token);
         setLoading(false);
       } else {
@@ -191,6 +194,8 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        room,
+        setRoom,
         login,
         logout,
         signup,

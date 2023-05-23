@@ -1,36 +1,36 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingHorizontal: 30,
   },
   boldText: {
     marginTop: 5,
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   Middle: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   text: {
-    flexDirection: "row",
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
     marginVertical: 5,
   },
   signupText: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   buttonViewStyle: {
     marginTop: 10,
   },
   inputViewStyle: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
     marginVertical: 5,
     borderRadius: 10,
     padding: 10,
@@ -39,19 +39,19 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: "#fff",
-    color: "#424242",
+    backgroundColor: '#fff',
+    color: '#424242',
   },
   buttonViewStyleX: {
     marginTop: 12,
   },
   logo: {
-    width: "80%",
+    width: '80%',
     marginTop: 50,
   },
   PRIMARY_ButtonContainer: {
     elevation: 8,
-    backgroundColor: "#007bff",
+    backgroundColor: '#007bff',
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
@@ -63,61 +63,62 @@ const styles = StyleSheet.create({
   },
   PRIMARY_ButtonText: {
     fontSize: 14,
-    color: "#fff",
-    fontWeight: "bold",
-    alignSelf: "center",
-    textTransform: "uppercase",
+    color: '#fff',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    textTransform: 'uppercase',
   },
   TERTIARY_ButtonText: {
     fontSize: 14,
-    color: "black",
-    alignSelf: "center",
+    color: 'black',
+    alignSelf: 'center',
   },
   link: {
-    color: "#FDB075",
+    color: '#FDB075',
   },
   errorText: {
-    color: "red",
+    color: 'red',
     fontSize: 16,
     marginTop: 5,
     marginBottom: 10,
   },
   indicatorView: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   logoutIcon: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#ff6347",
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ff6347',
     borderRadius: 8,
     padding: 8,
   },
   flatListItemContainer: {
-    backgroundColor: "#F5F5F5",
+    backgroundColor: '#F5F5F5',
     padding: 10,
     marginBottom: 10,
     borderRadius: 8,
   },
   flatListMainText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   flatListSecondaryText: {
     fontSize: 14,
   },
   flatListLanguageText: {
     fontSize: 12,
-    fontStyle: "italic",
+    fontStyle: 'italic',
     marginTop: 5,
   },
   flatListMain: {
     marginTop: 20,
+    maxHeight: '30%',
   },
   selectLabel: {
     marginRight: 10,
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     fontSize: 16,
-    color: "black",
+    color: 'black',
   },
 });
 

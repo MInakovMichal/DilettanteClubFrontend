@@ -1,12 +1,8 @@
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, FlatList } from "react-native";
 import React, { useState, useEffect } from "react";
 import UseRoomContext from "../../../context/UseRoomContext";
-import i18n from "../../../../i18n";
-import CustomText from "../../../components/CustomElements/CustomText";
 import { styles } from "../../../../app.styles";
-import CustomButton from "../../../components/CustomElements/CustomButton";
 import { useIsFocused } from "@react-navigation/native";
-import Flag from "react-native-flags";
 import FlatListUsers from "../../../components/CustomElements/FlatListUsers";
 import FlatListQuestions from "../../../components/CustomElements/FlatListQuestions";
 import FlatListPunishments from "../../../components/CustomElements/FlatListPunishments";
@@ -33,20 +29,27 @@ const Room = ({ navigation }) => {
     }
   };
 
-  const onAddQuestionsPress = async (data) => {
-    try {
-    } catch (error) {
-      setError(error.message);
+  const data = [
+    {
+      type: "users",
+    },
+    {
+      type: "questions",
+    },
+    {
+      type: "punishments",
+    },
+  ];
+
+  const renderChildFlatList = ({ item }) => {
+    if (item.type === "users") {
+      return <FlatListUsers users={users} />;
+    } else if (item.type === "questions") {
+      return <FlatListQuestions questions={questions} />;
+    } else if (item.type === "punishments") {
+      return <FlatListPunishments punishments={punishments} />;
     }
   };
-
-  const onAddPunishmentsPress = async (data) => {
-    try {
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
   useEffect(() => {
     if (isFocused) {
       getRoomDetails();
@@ -54,55 +57,12 @@ const Room = ({ navigation }) => {
   }, [isFocused]);
 
   return (
-    <SafeAreaView>
-      <CustomText
-        textValue={i18n.t("custom_text.players_in_room")}
-        textStyleName={"boldText"}
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={data}
+        renderItem={renderChildFlatList}
+        keyExtractor={(item) => item.type}
       />
-      {users ? (
-        <FlatListUsers users={users} />
-      ) : (
-        <CustomText
-          textStyleName="text"
-          textValue={i18n.t("custom_text.no_one_player_in_room")}
-        />
-      )}
-      <CustomText
-        textValue={i18n.t("custom_text.your_questions")}
-        textStyleName={"boldText"}
-      />
-      {questions ? (
-        <FlatListQuestions data={questions} />
-      ) : (
-        <View>
-          <CustomText
-            textStyleName="text"
-            textValue={i18n.t("custom_text.no_one_question_in_room")}
-          />
-          <CustomButton
-            value={i18n.t("button.add_questions")}
-            onPress={onAddQuestionsPress}
-          />
-        </View>
-      )}
-      <CustomText
-        textValue={i18n.t("custom_text.your_punishments")}
-        textStyleName={"boldText"}
-      />
-      {punishments ? (
-        <FlatListPunishments data={punishments} />
-      ) : (
-        <View>
-          <CustomText
-            textStyleName="text"
-            textValue={i18n.t("custom_text.no_one_punishment_in_room")}
-          />
-          <CustomButton
-            value={i18n.t("button.add_punishments")}
-            onPress={onAddPunishmentsPress}
-          />
-        </View>
-      )}
     </SafeAreaView>
   );
 };

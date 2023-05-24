@@ -1,7 +1,6 @@
 import { SafeAreaView, FlatList, View, Text } from "react-native";
 import React, { useState, useEffect } from "react";
 import { styles } from "../../../../app.styles";
-import CustomText from "../../../components/CustomElements/CustomText";
 import UseAuthContext from "../../../context/UseAuthContext";
 import UseQuestionContext from "../../../context/UseQuestionContext";
 import CustomButton from "../../../components/CustomElements/CustomButton";

@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
   },
   flatListMain: {
     marginTop: 20,
-    maxHeight: "35%",
+    // maxHeight: "50%",
   },
   selectLabel: {
     marginRight: 10,

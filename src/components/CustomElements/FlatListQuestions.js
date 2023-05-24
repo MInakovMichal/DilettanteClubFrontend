@@ -8,12 +8,22 @@ import i18n from "../../../i18n";
 import UseRoomContext from "../../context/UseRoomContext";
 import CustomText from "./CustomText";
 import { Feather } from "@expo/vector-icons";
+import QuestionsModal from "./Modals/QuestionsModal";
 
 const FlatListQuestions = ({ questions }) => {
   const [checkedQuestions, setCheckedQuestions] = useState([]);
   const { deleteQuestionsFromRoom } = UseRoomContext();
   const [disabled, setDisabled] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -46,6 +56,7 @@ const FlatListQuestions = ({ questions }) => {
 
   const onAddQuestionsPress = async (data) => {
     try {
+      toggleModal();
     } catch (error) {
       setError(error.message);
     }
@@ -108,24 +119,12 @@ const FlatListQuestions = ({ questions }) => {
               value={i18n.t("button.add_questions")}
               onPress={onAddQuestionsPress}
             />
+            <QuestionsModal
+              isVisible={isModalVisible}
+              onCloseModal={closeModal}
+            />
           </View>
         ))}
-    </View>
-  );
-
-  return (
-    <View>
-      <FlatList
-        style={styles.flatListMain}
-        data={questions}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-      />
-      <CustomButton
-        value={i18n.t("button.delete_questions_from_room")}
-        onPress={onDeleteQuestionsFromRoomPress}
-        disabled={disabled}
-      />
     </View>
   );
 };

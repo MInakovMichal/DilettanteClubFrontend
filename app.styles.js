@@ -56,11 +56,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 12,
     opacity: disabled ? 0.5 : 1,
+    marginHorizontal: 5,
   }),
   TERTIARY_ButtonContainer: {
     elevation: 8,
     paddingVertical: 10,
     paddingHorizontal: 12,
+    marginHorizontal: 5,
   },
   PRIMARY_ButtonText: {
     fontSize: 14,
@@ -68,11 +70,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignSelf: "center",
     textTransform: "uppercase",
+    marginHorizontal: 5,
   },
   TERTIARY_ButtonText: {
     fontSize: 14,
     color: "black",
     alignSelf: "center",
+    marginHorizontal: 5,
   },
   link: {
     color: "#FDB075",
@@ -134,6 +138,13 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     flexDirection: "row",
   },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
 });
-
 export { styles };

@@ -19,6 +19,8 @@ export default {
     no_one_punishment_in_room: "You have not add any punishment to the room",
     your_questions: "Your questions added to the room",
     no_one_question_in_room: "You have not add any question to the room",
+    choose_questions: "Choose questions",
+    choose_punishments: "Choose punishments",
   },
 
   terms_and_condition: {
@@ -74,6 +76,7 @@ export default {
     delete_users_from_room: "Delete players from room",
     delete_questions_from_room: "Delete questions from room",
     delete_punishments_from_room: "Delete punishments from room",
+    close: "Close",
   },
   error: {
     username: {

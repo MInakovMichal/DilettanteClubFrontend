@@ -8,12 +8,22 @@ import i18n from "../../../i18n";
 import UseRoomContext from "../../context/UseRoomContext";
 import CustomText from "./CustomText";
 import { Feather } from "@expo/vector-icons";
+import PunishmentsModal from "./Modals/PunishmentsModal";
 
 const FlatListPunishments = ({ punishments }) => {
   const [checkedPunishments, setCheckedPunishments] = useState([]);
   const { deletePunishmentsFromRoom } = UseRoomContext();
   const [disabled, setDisabled] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
@@ -44,6 +54,7 @@ const FlatListPunishments = ({ punishments }) => {
 
   const onAddPunishmentsPress = async (data) => {
     try {
+      toggleModal();
     } catch (error) {
       setError(error.message);
     }
@@ -106,25 +117,13 @@ const FlatListPunishments = ({ punishments }) => {
               value={i18n.t("button.add_punishments")}
               onPress={onAddPunishmentsPress}
             />
+            <PunishmentsModal
+              isVisible={isModalVisible}
+              onCloseModal={closeModal}
+            />
           </View>
         ))}
     </View>
-  );
-
-  return (
-    <>
-      <FlatList
-        style={styles.flatListMain}
-        data={punishments}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-      />
-      <CustomButton
-        value={i18n.t("button.delete_punishments_from_room")}
-        onPress={onDeletePunishmentsFromRoomPress}
-        disabled={disabled}
-      />
-    </>
   );
 };
 

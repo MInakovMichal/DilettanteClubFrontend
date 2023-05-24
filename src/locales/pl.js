@@ -19,6 +19,8 @@ export default {
     no_one_punishment_in_room: "Nie dodaleś żadnej kary do pokoju",
     your_questions: "Twoje zapytania dodane do pokoju",
     no_one_question_in_room: "Nie dodaleś żadnego zapytania do pokoju",
+    choose_questions: "Wybierz zapytania",
+    choose_punishments: "Wybierz kary",
   },
 
   terms_and_condition: {
@@ -73,6 +75,7 @@ export default {
     delete_users_from_room: "Usuń graczy z pokoju",
     delete_questions_from_room: "Usuń zapytanai z pokoju",
     delete_punishments_from_room: "Usuń kary z pokoju",
+    close: "Zamknij",
   },
   error: {
     username: {

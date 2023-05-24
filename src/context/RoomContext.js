@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import UseAuthContext from './UseAuthContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import UseAuthContext from "./UseAuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const RoomContext = React.createContext();
 
-export const API_BASE_URL = 'http://192.168.100.91/api/rooms';
-export const ROOM_KEY = 'room';
+export const API_BASE_URL = "http://192.168.100.91/api/rooms";
+export const ROOM_KEY = "room";
 
 const RoomProvider = ({ children }) => {
   const { user, userToken, setRoom, room } = UseAuthContext();
@@ -17,10 +17,10 @@ const RoomProvider = ({ children }) => {
   const getAllPublicRooms = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/public`, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -35,7 +35,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error('An unexpected error occurred');
+      throw new Error("An unexpected error occurred");
     }
   };
 
@@ -48,10 +48,10 @@ const RoomProvider = ({ children }) => {
 
     try {
       const response = await fetch(`${API_BASE_URL}/create`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
@@ -77,17 +77,17 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error('An unexpected error occurred');
+      throw new Error("An unexpected error occurred");
     }
   };
 
   const roomDetails = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/details?room_id=` + room, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -102,8 +102,85 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error('An unexpected error occurred');
+      throw new Error("An unexpected error occurred");
     }
+  };
+
+  const deleteUsersFromRoom = async (data) => {
+    console.log(data);
+    // try {
+    //   const response = await fetch(`${API_BASE_URL}/details?room_id=` + room, {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${userToken}`,
+    //     },
+    //   });
+    //   const data = await response.json();
+    //   // check if response was successful
+    //   if (response.ok) {
+    //     return data;
+    //   } else {
+    //     throw new Error(data.message);
+    //   }
+    // } catch (error) {
+    //   // handle any other errors
+    //   console.error(error);
+    //   setLoading(false);
+    //   throw new Error('An unexpected error occurred');
+    // }
+  };
+  const deleteQuestionsFromRoom = async (data) => {
+    console.log(data);
+    // try {
+    //   const response = await fetch(`${API_BASE_URL}/details?room_id=` + room, {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${userToken}`,
+    //     },
+    //   });
+    //   const data = await response.json();
+    //   // check if response was successful
+    //   if (response.ok) {
+    //     return data;
+    //   } else {
+    //     throw new Error(data.message);
+    //   }
+    // } catch (error) {
+    //   // handle any other errors
+    //   console.error(error);
+    //   setLoading(false);
+    //   throw new Error('An unexpected error occurred');
+    // }
+  };
+
+  const deletePunishmentsFromRoom = async (data) => {
+    console.log(data);
+    // try {
+    //   const response = await fetch(`${API_BASE_URL}/details?room_id=` + room, {
+    //     method: 'GET',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //       Authorization: `Bearer ${userToken}`,
+    //     },
+    //   });
+    //   const data = await response.json();
+    //   // check if response was successful
+    //   if (response.ok) {
+    //     return data;
+    //   } else {
+    //     throw new Error(data.message);
+    //   }
+    // } catch (error) {
+    //   // handle any other errors
+    //   console.error(error);
+    //   setLoading(false);
+    //   throw new Error('An unexpected error occurred');
+    // }
   };
 
   return (
@@ -112,6 +189,9 @@ const RoomProvider = ({ children }) => {
         getAllPublicRooms,
         createRoom,
         roomDetails,
+        deleteUsersFromRoom,
+        deleteQuestionsFromRoom,
+        deletePunishmentsFromRoom,
       }}
     >
       {children}

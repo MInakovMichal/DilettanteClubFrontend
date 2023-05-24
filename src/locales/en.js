@@ -71,6 +71,9 @@ export default {
     add: "Add",
     add_punishments: "Add punishments to the room",
     add_questions: "Add questions to the room",
+    delete_users_from_room: "Delete players from room",
+    delete_questions_from_room: "Delete questions from room",
+    delete_punishments_from_room: "Delete punishments from room",
   },
   error: {
     username: {

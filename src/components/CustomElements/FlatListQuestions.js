@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, View, Text, TouchableOpacity } from "react-native";
-import { Checkbox } from "react-native-paper";
-import { styles } from "../../../app.styles";
-import Flag from "react-native-flags";
+import { View, TouchableOpacity } from "react-native";
 import CustomButton from "./CustomButton";
 import i18n from "../../../i18n";
 import UseRoomContext from "../../context/UseRoomContext";
 import CustomText from "./CustomText";
 import { Feather } from "@expo/vector-icons";
 import QuestionsModal from "./Modals/QuestionsModal";
+import QuestionFlatListComponent from "./FlatLists/QuestionFlatListComponent";
 
 const FlatListQuestions = ({ questions }) => {
   const [checkedQuestions, setCheckedQuestions] = useState([]);
@@ -16,6 +14,7 @@ const FlatListQuestions = ({ questions }) => {
   const [disabled, setDisabled] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [error, setError] = useState("");
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -29,30 +28,9 @@ const FlatListQuestions = ({ questions }) => {
     setIsVisible(!isVisible);
   };
 
-  const handleCheckboxToggle = (itemId) => {
-    if (checkedQuestions.includes(itemId)) {
-      setCheckedQuestions(checkedQuestions.filter((item) => item !== itemId));
-    } else {
-      setCheckedQuestions([...checkedQuestions, itemId]);
-    }
+  const handleCheckedQuestions = (checkedQuestions) => {
+    setCheckedQuestions(checkedQuestions);
   };
-
-  const renderItem = ({ item, index }) => (
-    <View style={styles.checkBoxContainer}>
-      <Checkbox.Item
-        label={item.label}
-        status={checkedQuestions.includes(item.id) ? "checked" : "unchecked"}
-        onPress={() => handleCheckboxToggle(item.id)}
-      />
-      <Text style={styles.flatListMainText}>
-        {index + 1}. {item.question}
-      </Text>
-      <Text style={styles.flatListSecondaryText}>
-        {i18n.t("placeholder.answer")}:{item.answer}
-      </Text>
-      <Flag code={item.language} size={32} />
-    </View>
-  );
 
   const onAddQuestionsPress = async (data) => {
     try {
@@ -71,7 +49,6 @@ const FlatListQuestions = ({ questions }) => {
   };
 
   useEffect(() => {
-    // Check if checkedQuestions is empty
     if (checkedQuestions.length === 0) {
       setDisabled(true);
     } else {
@@ -97,11 +74,9 @@ const FlatListQuestions = ({ questions }) => {
       {isVisible &&
         (questions ? (
           <View>
-            <FlatList
-              style={styles.flatListMain}
-              data={questions}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={renderItem}
+            <QuestionFlatListComponent
+              questions={questions}
+              onCheckedQuestions={handleCheckedQuestions}
             />
             <CustomButton
               value={i18n.t("button.delete_questions_from_room")}

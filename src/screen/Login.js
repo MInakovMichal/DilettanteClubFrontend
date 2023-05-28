@@ -1,4 +1,4 @@
-import React, { useState, Text } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -69,8 +69,8 @@ const Login = ({ navigation }) => {
         }}
         placeholder={i18n.t('placeholder.password')}
         icon={<MaterialCommunityIcons name="key" size={20} />}
-        security={true}
         maxLength={32}
+        isPassword={true}
       />
       {error ? (
         <CustomText

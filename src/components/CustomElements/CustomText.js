@@ -1,6 +1,6 @@
-import { View, Text } from "react-native";
-import React from "react";
-import { styles } from "../../../app.styles";
+import { View, Text } from 'react-native';
+import React from 'react';
+import { styles } from '../../../app.styles';
 
 const CustomText = ({
   viewStyleName,
@@ -9,11 +9,9 @@ const CustomText = ({
   icon = null,
 }) => {
   return (
-    <View style={styles[viewStyleName]}>
-      <Text style={styles[textStyleName]}>
-        {textValue}
-        {icon ?? icon}
-      </Text>
+    <View style={[styles[viewStyleName], { flexDirection: 'row' }]}>
+      {icon ?? icon}
+      <Text style={styles[textStyleName]}>{textValue}</Text>
     </View>
   );
 };

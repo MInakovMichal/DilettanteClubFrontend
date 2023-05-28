@@ -1,15 +1,15 @@
-import { SafeAreaView, FlatList } from "react-native";
-import React, { useState, useEffect } from "react";
-import UseRoomContext from "../../../context/UseRoomContext";
-import { styles } from "../../../../app.styles";
-import { useIsFocused } from "@react-navigation/native";
-import FlatListUsers from "../../../components/CustomElements/FlatListUsers";
-import FlatListQuestions from "../../../components/CustomElements/FlatListQuestions";
-import FlatListPunishments from "../../../components/CustomElements/FlatListPunishments";
+import { SafeAreaView, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import UseRoomContext from '../../../context/UseRoomContext';
+import { styles } from '../../../../app.styles';
+import { useIsFocused } from '@react-navigation/native';
+import FlatListUsers from '../../../components/CustomElements/FlatListUsers';
+import FlatListQuestions from '../../../components/CustomElements/FlatListQuestions';
+import FlatListPunishments from '../../../components/CustomElements/FlatListPunishments';
 
 const Room = ({ navigation }) => {
   const isFocused = useIsFocused();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { roomDetails } = UseRoomContext();
 
   const [room, setRoom] = useState();
@@ -31,39 +31,39 @@ const Room = ({ navigation }) => {
 
   const data = [
     {
-      type: "users",
+      type: 'users',
     },
     {
-      type: "questions",
+      type: 'questions',
     },
     {
-      type: "punishments",
+      type: 'punishments',
     },
   ];
 
   const questionsTestArray = [
     {
       id: 2,
-      question: "testnametestname testname testname testname testname testname",
+      question: 'testnametestname testname testname testname testname testname',
       answer: 1,
     },
-    { id: 3, question: "testname", answer: 4 },
-    { id: 4, question: "testname", answer: 2 },
-    { id: 5, question: "testname", answer: 7 },
-    { id: 6, question: "testname", answer: 85 },
-    { id: 7, question: "testname", answer: 52 },
-    { id: 8, question: "testname", answer: 8974 },
-    { id: 9, question: "testname", answer: 157 },
-    { id: 10, question: "testname", answer: 158 },
-    { id: 1, question: "Test", answer: 9885 },
+    { id: 3, question: 'testname', answer: 4 },
+    { id: 4, question: 'testname', answer: 2 },
+    { id: 5, question: 'testname', answer: 7 },
+    { id: 6, question: 'testname', answer: 85 },
+    { id: 7, question: 'testname', answer: 52 },
+    { id: 8, question: 'testname', answer: 8974 },
+    { id: 9, question: 'testname', answer: 157 },
+    { id: 10, question: 'testname', answer: 158 },
+    { id: 1, question: 'Test', answer: 9885 },
   ];
 
   const renderChildFlatList = ({ item }) => {
-    if (item.type === "users") {
+    if (item.type === 'users') {
       return <FlatListUsers users={users} />;
-    } else if (item.type === "questions") {
+    } else if (item.type === 'questions') {
       return <FlatListQuestions questions={questions} />;
-    } else if (item.type === "punishments") {
+    } else if (item.type === 'punishments') {
       return <FlatListPunishments punishments={punishments} />;
     }
   };

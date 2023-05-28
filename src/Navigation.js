@@ -1,12 +1,17 @@
-import React from "react";
-import AuthStack from "./stack/AuthStack";
-import HomeStack from "./stack/HomeStack";
-import UseAuthContext from "./context/UseAuthContext";
+import React from 'react';
+import AuthStack from './stack/AuthStack';
+import HomeStack from './stack/HomeStack';
+import UseAuthContext from './context/UseAuthContext';
+import { Loading } from './components/Loading';
 
 const Navigation = () => {
-  const { userToken } = UseAuthContext();
+  const { userToken, loading } = UseAuthContext();
 
-  return <>{userToken == null ? <HomeStack /> : <HomeStack />}</>;
+  if (loading) {
+    return <Loading />;
+  }
+
+  return <>{userToken == null ? <AuthStack /> : <HomeStack />}</>;
 };
 
 export default Navigation;

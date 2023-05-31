@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { FlatList, View, Text } from 'react-native';
-import { Checkbox } from 'react-native-paper';
-import Flag from 'react-native-flags';
-import { styles } from '../../../../app.styles';
-import i18n from '../../../../i18n';
+import React, { useState, useEffect } from "react";
+import { FlatList, View, Text } from "react-native";
+import { Checkbox } from "react-native-paper";
+import Flag from "react-native-flags";
+import { styles } from "../../../../app.styles";
+import i18n from "../../../../i18n";
 
-const QuestionFlatListComponent = ({ questions, onCheckedQuestions }) => {
+const QuestionFlatListComponent = ({
+  questions,
+  onCheckedQuestions,
+  extraData,
+}) => {
   const [checkedQuestions, setCheckedQuestions] = useState([]);
 
   const handleCheckboxToggle = (itemId) => {
@@ -20,18 +24,18 @@ const QuestionFlatListComponent = ({ questions, onCheckedQuestions }) => {
     <View style={styles.checkBoxContainer}>
       <Checkbox.Item
         label={item.label}
-        status={checkedQuestions.includes(item.id) ? 'checked' : 'unchecked'}
+        status={checkedQuestions.includes(item.id) ? "checked" : "unchecked"}
         onPress={() => handleCheckboxToggle(item.id)}
       />
-      <View style={{ maxWidth: '80%' }}>
+      <View style={{ maxWidth: "80%" }}>
         <Text style={styles.flatListMainText}>
           {index + 1}. {item.question}
         </Text>
         <Text style={styles.flatListSecondaryText}>
           <Text style={styles.flatListMainText}>
-            {i18n.t('placeholder.answer')}:
+            {i18n.t("placeholder.answer")}:
           </Text>
-          {' ' + item.answer}
+          {" " + item.answer}
         </Text>
         <Flag code={item.language} size={32} />
       </View>
@@ -48,6 +52,7 @@ const QuestionFlatListComponent = ({ questions, onCheckedQuestions }) => {
       data={questions}
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderItem}
+      extraDat={extraData}
     />
   );
 };

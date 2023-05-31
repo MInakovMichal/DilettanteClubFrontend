@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { FlatList, View, Text } from 'react-native';
-import { Checkbox } from 'react-native-paper';
-import Flag from 'react-native-flags';
-import { styles } from '../../../../app.styles';
+import React, { useState, useEffect } from "react";
+import { FlatList, View, Text } from "react-native";
+import { Checkbox } from "react-native-paper";
+import Flag from "react-native-flags";
+import { styles } from "../../../../app.styles";
 
-const PunishmentFlatListComponent = ({ punishments, onCheckedPunishments }) => {
+const PunishmentFlatListComponent = ({
+  punishments,
+  onCheckedPunishments,
+  extraData,
+}) => {
   const [checkedPunishments, setCheckedPunishments] = useState([]);
 
   const handleCheckboxToggle = (itemId) => {
@@ -21,10 +25,10 @@ const PunishmentFlatListComponent = ({ punishments, onCheckedPunishments }) => {
     <View style={styles.checkBoxContainer}>
       <Checkbox.Item
         label={item.label}
-        status={checkedPunishments.includes(item.id) ? 'checked' : 'unchecked'}
+        status={checkedPunishments.includes(item.id) ? "checked" : "unchecked"}
         onPress={() => handleCheckboxToggle(item.id)}
       />
-      <View style={[{ maxWidth: '80%' }]}>
+      <View style={[{ maxWidth: "80%" }]}>
         <Text style={styles.flatListMainText}>
           {index + 1}. {item.punishment}
         </Text>
@@ -43,6 +47,7 @@ const PunishmentFlatListComponent = ({ punishments, onCheckedPunishments }) => {
       data={punishments}
       keyExtractor={(item) => item.id.toString()}
       renderItem={renderItem}
+      extraDat={extraData}
     />
   );
 };

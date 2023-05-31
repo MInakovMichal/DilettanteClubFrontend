@@ -43,6 +43,8 @@ const FlatListUsers = () => {
             </Text>
           }
           onPress={() => handleCheckboxToggle(item.id)}
+          size={32}
+          fillColor="#489ff0"
         />
       ) : (
         <Text style={styles.flatListMainText}>

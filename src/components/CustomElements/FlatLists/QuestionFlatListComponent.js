@@ -39,6 +39,8 @@ const QuestionFlatListComponent = ({
           </View>
         }
         onPress={() => handleCheckboxToggle(item.id)}
+        size={32}
+        fillColor="#489ff0"
       />
     </View>
   );

@@ -8,7 +8,7 @@ import { Feather } from "@expo/vector-icons";
 import PunishmentFlatListComponent from "./FlatLists/PunishmentFlatListComponent";
 import { useNavigation } from "@react-navigation/native";
 
-const FlatListPunishments = ({ punishments }) => {
+const FlatListPunishments = () => {
   const [checkedPunishments, setCheckedPunishments] = useState([]);
   const { deletePunishmentsFromRoom, getPunishmentsInRoom } = UseRoomContext();
   const [disabled, setDisabled] = useState(true);

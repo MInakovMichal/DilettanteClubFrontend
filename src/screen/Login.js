@@ -39,7 +39,6 @@ const Login = ({ navigation }) => {
         textStyleName="signupText"
         linkvalue={i18n.t("button.register")}
       />
-
       <CustomInput
         control={control}
         name="email"
@@ -53,7 +52,6 @@ const Login = ({ navigation }) => {
         placeholder={i18n.t("placeholder.email")}
         icon={<FontAwesome name="user" size={20} />}
       />
-
       <CustomInput
         control={control}
         name="password"
@@ -79,12 +77,10 @@ const Login = ({ navigation }) => {
           textValue={error}
         />
       ) : null}
-
       <CustomButton
         onPress={handleSubmit(onLoginPress)}
         value={i18n.t("button.login")}
       />
-
       <CustomTextNavigate
         viewStyleName="Middle"
         routeName="ForgotPassword"

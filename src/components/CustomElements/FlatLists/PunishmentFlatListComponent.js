@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View, Text } from "react-native";
-import { Checkbox } from "react-native-paper";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Flag from "react-native-flags";
 import { styles } from "../../../../app.styles";
 
@@ -23,17 +23,18 @@ const PunishmentFlatListComponent = ({
 
   const renderItem = ({ item, index }) => (
     <View style={styles.checkBoxContainer}>
-      <Checkbox.Item
-        label={item.label}
-        status={checkedPunishments.includes(item.id) ? "checked" : "unchecked"}
+      <BouncyCheckbox
+        isChecked={checkedQuestions.includes(item.id)}
+        text={
+          <View style={[{ maxWidth: "80%" }]}>
+            <Text style={styles.flatListMainText}>
+              {index + 1}. {item.punishment}
+            </Text>
+            <Flag code={item.language} size={32} />
+          </View>
+        }
         onPress={() => handleCheckboxToggle(item.id)}
       />
-      <View style={[{ maxWidth: "80%" }]}>
-        <Text style={styles.flatListMainText}>
-          {index + 1}. {item.punishment}
-        </Text>
-        <Flag code={item.language} size={32} />
-      </View>
     </View>
   );
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FlatList, View, Text, TouchableOpacity } from "react-native";
-import { Checkbox } from "react-native-paper";
 import { styles } from "../../../app.styles";
 import Flag from "react-native-flags";
 import CustomButton from "./CustomButton";
@@ -9,6 +8,7 @@ import UseRoomContext from "../../context/UseRoomContext";
 import { Feather } from "@expo/vector-icons";
 import CustomText from "./CustomText";
 import UseAuthContext from "../../context/UseAuthContext";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 const FlatListUsers = () => {
   const [checkedUsers, setCheckedUsers] = useState([]);
@@ -35,17 +35,20 @@ const FlatListUsers = () => {
   const renderItem = ({ item, index }) => (
     <View style={styles.checkBoxContainer}>
       {item.id !== roomAuthorId ? (
-        <Checkbox.Item
-          label={item.label}
-          status={checkedUsers.includes(item.id) ? "checked" : "unchecked"}
+        <BouncyCheckbox
+          isChecked={checkedQuestions.includes(item.id)}
+          text={
+            <Text style={styles.flatListMainText}>
+              {item.username} <Flag code={item.language} size={32} />
+            </Text>
+          }
           onPress={() => handleCheckboxToggle(item.id)}
         />
       ) : (
-        <></>
+        <Text style={styles.flatListMainText}>
+          {item.username} <Flag code={item.language} size={32} />
+        </Text>
       )}
-      <Text style={styles.flatListMainText}>
-        {item.username} <Flag code={item.language} size={32} />
-      </Text>
     </View>
   );
 

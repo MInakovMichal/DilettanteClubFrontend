@@ -9,6 +9,7 @@ import { Feather } from "@expo/vector-icons";
 import CustomText from "./CustomText";
 import UseAuthContext from "../../context/UseAuthContext";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import YouIcon from "../YouIcon";
 
 const FlatListUsers = () => {
   const [checkedUsers, setCheckedUsers] = useState([]);
@@ -48,7 +49,7 @@ const FlatListUsers = () => {
         />
       ) : (
         <Text style={styles.flatListMainText}>
-          {item.username} <Flag code={item.language} size={32} />
+          <YouIcon /> {item.username} <Flag code={item.language} size={32} />
         </Text>
       )}
     </View>

@@ -16,24 +16,22 @@ const Punishments = ({ navigation }) => {
 
   const [punishments, setPunishments] = useState('');
 
-  const allPunishments = async (data) => {
-    try {
-      const response = await getAllPunishments(user);
-      setPunishments(response.data);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
+  // const allPunishments = async (data) => {
+  //   try {
+  //     const response = await getAllPunishments(user);
+  //     setPunishments(response.data);
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+  // };
 
   const onAddPunishmentPress = async (data) => {
     navigation.navigate('AddPunishment');
   };
 
-  useEffect(() => {
-    if (isFocused) {
-      allPunishments();
-    }
-  }, [isFocused]);
+  // useEffect(() => {
+  //   allPunishments();
+  // }, []);
 
   const renderItem = ({ item, index }) => (
     <View style={styles.flatListItemContainer}>

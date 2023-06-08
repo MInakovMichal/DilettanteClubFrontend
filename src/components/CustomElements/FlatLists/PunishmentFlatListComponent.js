@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { FlatList, View, Text } from "react-native";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
-import Flag from "react-native-flags";
-import { styles } from "../../../../app.styles";
+import React, { useState, useEffect } from 'react';
+import { FlatList, View, Text } from 'react-native';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import Flag from 'react-native-flags';
+import { styles } from '../../../../app.styles';
 
 const PunishmentFlatListComponent = ({
   punishments,
@@ -24,9 +24,9 @@ const PunishmentFlatListComponent = ({
   const renderItem = ({ item, index }) => (
     <View style={styles.checkBoxContainer}>
       <BouncyCheckbox
-        isChecked={checkedQuestions.includes(item.id)}
+        isChecked={checkedPunishments.includes(item.id)}
         text={
-          <View style={[{ maxWidth: "80%" }]}>
+          <View style={[{ maxWidth: '80%' }]}>
             <Text style={styles.flatListMainText}>
               {index + 1}. {item.punishment}
             </Text>

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import UseAuthContext from "./UseAuthContext";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import UseAuthContext from './UseAuthContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RoomContext = React.createContext();
 
-export const API_BASE_URL = "http://192.168.100.91/api/rooms";
-export const ROOM_KEY = "room";
-export const AUTHOR_KEY = "room_author_id";
+export const API_BASE_URL = 'http://192.168.100.91/api/rooms';
+export const ROOM_KEY = 'room';
+export const AUTHOR_KEY = 'room_author_id';
 
 const RoomProvider = ({ children }) => {
   const { user, userToken, setInRoom } = UseAuthContext();
@@ -19,10 +19,10 @@ const RoomProvider = ({ children }) => {
   const getAllPublicRooms = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/public`, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -37,7 +37,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -50,10 +50,10 @@ const RoomProvider = ({ children }) => {
 
     try {
       const response = await fetch(`${API_BASE_URL}/create`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
@@ -71,7 +71,7 @@ const RoomProvider = ({ children }) => {
         await AsyncStorage.setItem(ROOM_KEY, JSON.stringify(data.data.room.id));
         setInRoom(true);
 
-        navigation.navigate("Room");
+        navigation.navigate('Room');
       } else {
         throw new Error(data.message);
       }
@@ -79,17 +79,17 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
   const roomDetails = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/details`, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -110,17 +110,17 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
   const getQuestionsInRoom = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/questions-in-room`, {
-        method: "GET",
+      const response = await fetch(`${API_BASE_URL}/user-questions-in-room`, {
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -135,17 +135,17 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
   const getPunishmentsInRoom = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/punishments-in-room`, {
-        method: "GET",
+      const response = await fetch(`${API_BASE_URL}/user-punishments-in-room`, {
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -160,17 +160,17 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
   const getUsersInRoom = async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/users-in-room`, {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
       });
@@ -185,7 +185,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -219,10 +219,10 @@ const RoomProvider = ({ children }) => {
     const questions = data;
     try {
       const response = await fetch(`${API_BASE_URL}/delete-questions`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
@@ -240,7 +240,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -248,10 +248,10 @@ const RoomProvider = ({ children }) => {
     const punishments = data;
     try {
       const response = await fetch(`${API_BASE_URL}/delete-punishments`, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
@@ -269,7 +269,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -277,10 +277,10 @@ const RoomProvider = ({ children }) => {
     const questions = data;
     try {
       const response = await fetch(`${API_BASE_URL}/add-questions`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
@@ -298,7 +298,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -306,10 +306,10 @@ const RoomProvider = ({ children }) => {
     const punishments = data;
     try {
       const response = await fetch(`${API_BASE_URL}/add-punishments`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${userToken}`,
         },
         body: JSON.stringify({
@@ -327,7 +327,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -359,10 +359,10 @@ const RoomProvider = ({ children }) => {
       const response = await fetch(
         `${API_BASE_URL}/user-questions-not-in-room`,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${userToken}`,
           },
         }
@@ -378,7 +378,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 
@@ -408,10 +408,10 @@ const RoomProvider = ({ children }) => {
       const response = await fetch(
         `${API_BASE_URL}/user-punishments-not-in-room`,
         {
-          method: "GET",
+          method: 'GET',
           headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
             Authorization: `Bearer ${userToken}`,
           },
         }
@@ -427,7 +427,7 @@ const RoomProvider = ({ children }) => {
       // handle any other errors
       console.error(error);
       setLoading(false);
-      throw new Error("An unexpected error occurred");
+      throw new Error('An unexpected error occurred');
     }
   };
 

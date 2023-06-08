@@ -41,16 +41,14 @@ const AddPunishmentsToRoom = () => {
   };
 
   useEffect(() => {
-    if (isFocused) {
-      getPunishments();
+    getPunishments();
 
-      if (checkedPunishments.length === 0) {
-        setDisabled(true);
-      } else {
-        setDisabled(false);
-      }
+    if (checkedPunishments.length === 0) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
     }
-  }, [isFocused, checkedPunishments]);
+  }, [checkedPunishments]);
 
   return (
     <SafeAreaView style={styles.modalContent}>

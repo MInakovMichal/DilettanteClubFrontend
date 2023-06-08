@@ -1,15 +1,15 @@
-import { SafeAreaView, FlatList } from "react-native";
-import React, { useState, useEffect } from "react";
-import UseRoomContext from "../../../context/UseRoomContext";
-import { styles } from "../../../../app.styles";
-import { useIsFocused } from "@react-navigation/native";
-import FlatListUsers from "../../../components/CustomElements/FlatListUsers";
-import FlatListQuestions from "../../../components/CustomElements/FlatListQuestions";
-import FlatListPunishments from "../../../components/CustomElements/FlatListPunishments";
+import { SafeAreaView, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import UseRoomContext from '../../../context/UseRoomContext';
+import { styles } from '../../../../app.styles';
+import { useIsFocused } from '@react-navigation/native';
+import FlatListUsers from '../../../components/CustomElements/FlatListUsers';
+import FlatListQuestions from '../../../components/CustomElements/FlatListQuestions';
+import FlatListPunishments from '../../../components/CustomElements/FlatListPunishments';
 
 const Room = ({ navigation }) => {
   const isFocused = useIsFocused();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { roomDetails } = UseRoomContext();
 
   const [room, setRoom] = useState();
@@ -25,22 +25,22 @@ const Room = ({ navigation }) => {
 
   const data = [
     {
-      type: "users",
+      type: 'users',
     },
     {
-      type: "questions",
+      type: 'questions',
     },
     {
-      type: "punishments",
+      type: 'punishments',
     },
   ];
 
   const renderChildFlatList = ({ item }) => {
-    if (item.type === "users") {
+    if (item.type === 'users') {
       return <FlatListUsers />;
-    } else if (item.type === "questions") {
+    } else if (item.type === 'questions') {
       return <FlatListQuestions />;
-    } else if (item.type === "punishments") {
+    } else if (item.type === 'punishments') {
       return <FlatListPunishments />;
     }
   };
